@@ -1,11 +1,13 @@
 import { View, Text, SafeAreaView, StyleSheet, ImageBackground } from 'react-native';
 import React from 'react';
-import ExploreImg from "../../assets/images/coffee-splash.png";
+import ExploreImg from "../assets/images/coffee-splash.png";
 
 const explore = () => {
   return (
-    <ImageBackground source={ExploreImg} resizeMode='cover' style={styles.image}><View style={styles.container}>
-      
+    <ImageBackground source={ExploreImg} resizeMode='cover' style={styles.image}>
+      <View style={styles.overlay} />
+      <View style={styles.container}>
+          
       <Text style={styles.title}>Why {"("}the Right Amount of{")"} Coffee Is Good for You?</Text>
 
       <Text style={styles.text}>Ah, coffee. Whether you’re cradling a travel mug on your way to work or dashing out after spin class to refuel with a skinny latte, it’s hard to imagine a day without it. The caffeine perks you up, and there’s something incredibly soothing about sipping a steaming cup of joe. But is drinking coffee good for you?</Text>
@@ -22,13 +24,13 @@ export default explore;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0, 0, 0, 0.46)',
+    marginTop: 30,
     flex: 1,
     paddingTop: 80,
     paddingBottom: 20,
     paddingLeft: 18,
     paddingRight: 18,
-alignContent: 'center',
+    alignContent: 'center',
   },
   title: {
     color: 'white',
@@ -53,5 +55,9 @@ alignContent: 'center',
     resizeMode: 'cover',
     justifyContent: 'center',
     flex: 1,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject, 
+    backgroundColor: 'rgba(0, 0, 0, 0.46)',
   }
 })
