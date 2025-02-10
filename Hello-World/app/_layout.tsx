@@ -1,4 +1,6 @@
 import { Appearance } from 'react-native';
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -30,15 +32,12 @@ export default function RootLayout() {
   }
 
   return (
-   
-      <Stack screenOptions={{ headerTintColor: theme.text, headerShadowVisible: false, headerTransparent: true, headerTitleAlign: 'center',  }}>
+    <GluestackUIProvider mode="light"><Stack screenOptions={{ headerTintColor: theme.text, headerShadowVisible: false, headerTransparent: true, headerTitleAlign: 'center',  }}>
         {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
         <Stack.Screen name="index" options={{ title: 'Home', headerShown: false }}/>
         <Stack.Screen name="explore" options={{ title: '' }}/>
         <Stack.Screen name="beans" options={{ title: '', headerStyle: { backgroundColor: 'rgba(238, 228, 228, 0.44)' } }}/>
         <Stack.Screen name="+not-found" />
-      </Stack>
-  
-  
+      </Stack></GluestackUIProvider>
   );
 }
