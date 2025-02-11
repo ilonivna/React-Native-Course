@@ -25,11 +25,13 @@ import { Colors } from "@/constants/Colors";
 import { BeansItems } from "../constants/BeansItems";
 import { ChevronUpIcon, ChevronDownIcon } from "@/components/ui/icon";
 
+
 export default function Beans() {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
   const styles = createStyles(theme, colorScheme);
   const Container = Platform.OS === "web" ? ScrollView : SafeAreaView;
+
 
   return (
     <ImageBackground source={BeansImg} style={styles.image} resizeMode="cover">
@@ -54,14 +56,14 @@ export default function Beans() {
             data={BeansItems}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <View>
+              <View style={styles.itemContainer}>
                 <View>
-                  <Text style={styles.text}>{item.origin}</Text>
-                  <Text style={styles.text}>{item.use}</Text>
-                  <Text style={styles.text}>{item.flavor}</Text>
+                  <Text style={styles.textBtn}>{item.origin}</Text>
+                  <Text style={styles.textBtn}>{item.use}</Text>
+                  <Text style={styles.textBtn}>{item.flavor}</Text>
                 </View>
                 <Accordion variant="unfilled" className="text-amber-500">
-                <AccordionItem value={item.id} className="rounded-lg bg-amber-100/15">
+                <AccordionItem value={item.id} className="rounded-lg bg-stone-950/75">
                   <AccordionHeader>
                     <AccordionTrigger>
                       {({ isExpanded }) => {
@@ -69,9 +71,9 @@ export default function Beans() {
                           <>
                             <AccordionTitleText className="text-amber-500">{item.name}</AccordionTitleText>
                             {isExpanded ? (
-                              <AccordionIcon as={ChevronUpIcon} />
+                              <AccordionIcon as={ChevronUpIcon} className="text-amber-500"/>
                             ) : (
-                              <AccordionIcon as={ChevronDownIcon} />
+                              <AccordionIcon as={ChevronDownIcon} className="text-amber-500"/>
                             )}
                           </>
                         );
@@ -79,7 +81,7 @@ export default function Beans() {
                     </AccordionTrigger>
                   </AccordionHeader>
                   <AccordionContent>
-                    <AccordionContentText className="text-amber-500">
+                    <AccordionContentText className="text-amber-500 text-justify">
                       {item.description}
                     </AccordionContentText>
                   </AccordionContent>
@@ -96,11 +98,8 @@ export default function Beans() {
 
 const createStyles = (theme, colorScheme) => {
   return StyleSheet.create({
-    safeArea: {
-      flex: 1, // Ensures SafeAreaView fills the screen
-    },
     image: {
-      flex: 1, // Ensures ImageBackground fills the parent (SafeAreaView)
+      flex: 1,
       width: "100%",
       height: "100%",
       resizeMode: "cover",
@@ -110,7 +109,6 @@ const createStyles = (theme, colorScheme) => {
       ...StyleSheet.absoluteFillObject,
       backgroundColor: "rgba(0, 0, 0, 0.46)",
     },
-
     container: {
       flex: 1,
       alignItems: "center",
@@ -134,5 +132,24 @@ const createStyles = (theme, colorScheme) => {
       marginBottom: 10,
       marginTop: 10,
     },
+    textBtn: {
+        color: "#f7a56a",
+        fontSize: 18,
+        textShadowColor: "rgba(0, 0, 0, 0.71)",
+        textShadowOffset: { width: -1, height: 1 },
+        textShadowRadius: 10,
+        textAlign: "justify",
+        padding: 5,
+        marginBottom: 10,
+        marginTop: 10,
+        backgroundColor: "rgba(120, 53, 15, 0.4)",
+      },
+      itemContainer: {
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: "rgba(120, 53, 15, 0.8)",
+        borderStyle: "solid",
+        marginVertical: 10,
+      }
   });
 };
