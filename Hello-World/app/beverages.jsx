@@ -22,6 +22,13 @@ export default function Beverages() {
   const styles = createStyles(theme, colorScheme);
   const Container = Platform.OS === "web" ? ScrollView : SafeAreaView;
 
+
+  // const separator = <View style={styles.separator}></View>
+  // const header = <Text>Top of List</Text>
+  // const footer = <Text>Bottom of List</Text>
+// can be added as props on FlatList component: ItemSeparatorComponent, ListHeaderComponent, ListFooterComponent, ListFooterComponentStyle={...}
+// if no data returned from API another prop can be used in FlatList: 
+// ListEmptyComponent={<Text>No data found.</Text>}
   return (
     <ImageBackground
       source={BeveragesImg}
@@ -30,10 +37,12 @@ export default function Beverages() {
     >
       <Container  style={styles.container}>
         <View style={styles.overlay}/>
-        <View>
-          <Text style={styles.title}>The World of Coffee Beverages</Text>     
+        <View style={{ width: "100%" }}>
+        <Text style={styles.title}>The World of Coffee Beverages</Text>     
         <FlatList
           data={BeveragesItems}
+          
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             
@@ -47,12 +56,16 @@ export default function Beverages() {
               </View>
             </View>
           )}
-        /></View>
+        />
+        </View>
       </Container>
     </ImageBackground>
   );
 }
 
+
+
+// backgroundColor: colorScheme === "dark" ? "rgba(0, 0, 0, 0.46)" : "someOtherColor", 
 const createStyles = (theme, colorScheme) => {
   return StyleSheet.create({
     image: {
@@ -72,7 +85,6 @@ const createStyles = (theme, colorScheme) => {
     imageCont: {
         alignSelf: "stretch",
         height: 300, 
-        
     },
     overlay: {
       ...StyleSheet.absoluteFillObject,
@@ -81,14 +93,16 @@ const createStyles = (theme, colorScheme) => {
     container: {
       flex: 1,
       alignItems: "center",
-      paddingBottom: 20,
-      paddingHorizontal: 18,
+
+ 
     },
     title: {
       color: "white",
-      fontSize: 26,
+      fontSize: 20,
       textAlign: "center",
       fontWeight: "bold",
+    paddingBottom: 15,
+    marginTop: 20,
     },
     text: {
       color: "white",
@@ -108,9 +122,8 @@ const createStyles = (theme, colorScheme) => {
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 10,
         textAlign: "justify",
-        lineHeight: 25,
         textAlign: 'center',
-        marginTop: 20,
+        paddingVertical: 10,
     },
     textBtn: {
       color: "#f7a56a",
@@ -129,8 +142,10 @@ const createStyles = (theme, colorScheme) => {
       borderWidth: 1,
       borderColor: "rgba(120, 53, 15, 0.8)",
       borderStyle: "solid",
-      marginVertical: 10,
+      marginBottom: 15,
       backgroundColor: "rgba(0,0,0,0.5)",
+      alignSelf: 'stretch',
+      width: '100%',
     },
   });
 };

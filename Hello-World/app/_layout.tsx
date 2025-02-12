@@ -36,9 +36,13 @@ export default function RootLayout() {
         {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
         <Stack.Screen name="index" options={{ title: 'Home', headerShown: false }}/>
         <Stack.Screen name="explore" options={{ title: '' }}/>
-        <Stack.Screen name="beverages" options={{ headerShown: false }}/>
-        <Stack.Screen name="beans" options={{ title: '', headerStyle: { backgroundColor: 'rgba(238, 228, 228, 0.44)' } }}/>
+        <Stack.Screen name="beverages" options={{ title: '', headerStyle: { backgroundColor: 'rgba(238, 228, 228, 0.44)' } }}/>
+        <Stack.Screen name="beans" options={{ title: '', headerStyle: { backgroundColor: 'rgba(238, 228, 228, 0.44)' } }}
+       />
+        <Stack.Screen name="contact" options={{ title: '', headerStyle: { backgroundColor: 'rgba(238, 228, 228, 0.44)' } }}
+       />
         <Stack.Screen name="+not-found" />
       </Stack></GluestackUIProvider>
   );
 }
+  //  //

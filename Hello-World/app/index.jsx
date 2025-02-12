@@ -25,6 +25,10 @@ const  app = () => {
       <Pressable style={styles.btn}>
         <Text style={styles.btnText}>What to drink?</Text>
       </Pressable></Link>
+      <Link href="/contact" asChild>
+      <Pressable style={styles.btn}>
+        <Text style={styles.btnText}>Contact us</Text>
+      </Pressable></Link>
       </View>
       
       </ImageBackground>

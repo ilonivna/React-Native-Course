@@ -37,7 +37,7 @@ export default function Beans() {
     <ImageBackground source={BeansImg} style={styles.image} resizeMode="cover">
       <Container style={styles.container}>
         <View style={styles.overlay} />
-        <View>
+        <View style={{ paddingLeft: 15, paddingRight: 15, }}>
           <Text style={styles.title}>Beans</Text>
           <Text style={styles.text}>
             If you are a self-confessed coffee lover, to really appreciate your
@@ -53,14 +53,15 @@ export default function Beans() {
         
           <FlatList
             style={{ backgroundColor: "transparent" }}
+            showsVerticalScrollIndicator={false}
             data={BeansItems}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
                 <View>
-                  <Text style={styles.textBtn}>{item.origin}</Text>
-                  <Text style={styles.textBtn}>{item.use}</Text>
-                  <Text style={styles.textBtn}>{item.flavor}</Text>
+                  <Text style={styles.textBtn}>Origin: {item.origin}</Text>
+                  <Text style={styles.textBtn}>Use: {item.use}</Text>
+                  <Text style={styles.textBtn}>Flavor: {item.flavor}</Text>
                 </View>
                 <Accordion variant="unfilled" className="text-amber-500">
                 <AccordionItem value={item.id} className="rounded-lg bg-stone-950/75">
@@ -107,19 +108,18 @@ const createStyles = (theme, colorScheme) => {
     },
     overlay: {
       ...StyleSheet.absoluteFillObject,
-      backgroundColor: "rgba(0, 0, 0, 0.46)",
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
     },
     container: {
       flex: 1,
-      alignItems: "center",
-      paddingBottom: 20,
-      paddingHorizontal: 18,
+      alignItems: "center", 
     },
     title: {
       color: "white",
       fontSize: 26,
       textAlign: "center",
       fontWeight: "bold",
+      marginTop: 20,
     },
     text: {
       color: "white",
@@ -142,7 +142,7 @@ const createStyles = (theme, colorScheme) => {
         padding: 5,
         marginBottom: 10,
         marginTop: 10,
-        backgroundColor: "rgba(120, 53, 15, 0.4)",
+        backgroundColor: "rgba(120, 53, 15, 0.2)",
       },
       itemContainer: {
         borderRadius: 10,
