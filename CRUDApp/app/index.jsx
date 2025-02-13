@@ -7,8 +7,17 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import BG from "../assets/images/background/welcome.jpeg";
+import {Montserrat_500Medium, useFonts} from "@expo-google-fonts/montserrat";
 
 export default function Index() {
+  const [loaded, error] = useFonts({
+    Montserrat_500Medium,
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
     <ImageBackground source={BG} resizeMode="cover" style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -28,14 +37,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+    fontFamily: 'Montserrat_500Medium',
   },
   title: {
     fontSize: 26,
+    fontFamily: 'Montserrat_500Medium',
     textAlign: 'center',
     borderRadius: 30,
     padding: 10,
     marginTop: 215,
-    width: 140,
+    width: 155,
     textAlign: "right",
    lineHeight: 55,
     alignSelf: 'flex-end',
@@ -55,6 +66,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: 'black',
+    fontFamily: 'Montserrat_500Medium',
     fontSize: 24,
     textAlign: 'center',
   }
