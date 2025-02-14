@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 import { data } from "../data/todos";
 import {
   Text,
@@ -9,6 +10,8 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Entypo from "@expo/vector-icons/Entypo";
 import BG from "@/assets/images/background/welcome3.jpeg";
@@ -18,46 +21,49 @@ import { ThemeContext } from "./context/ThemeContext";
 import Animated, { LinearTransition } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
+import Theme from "../assets/images/background/day-night-icon.jpg"
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
+  const [showCue, setShowCue] = useState(false);
   const { theme, setColorScheme, colorScheme } = useContext(ThemeContext);
   const [loaded, error] = useFonts({
     Montserrat_500Medium,
   });
 
- 
+  const router = useRouter();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem("TodoApp")
-        const storageTodos = jsonValue != null ? JSON.parse(jsonValue) : null
+        const jsonValue = await AsyncStorage.getItem("TodoApp");
+        const storageTodos = jsonValue != null ? JSON.parse(jsonValue) : null;
 
         if (storageTodos && storageTodos.length) {
-          setTodos(storageTodos.sort((a, b) => b.id - a.id))
+          setTodos(storageTodos.sort((a, b) => b.id - a.id));
         } else {
-          setTodos(data.sort((a, b) => b.id - a.id))
+          setTodos(data.sort((a, b) => b.id - a.id));
         }
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const storeData = async () => {
       try {
-        const jsonValue = JSON.stringify(todos)
-        await AsyncStorage.setItem("TodoApp", jsonValue)
+        const jsonValue = JSON.stringify(todos);
+        await AsyncStorage.setItem("TodoApp", jsonValue);
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
-    }
+    };
 
-    storeData()
+    storeData();
   }, [todos]);
 
   if (!loaded && !error) {
@@ -85,15 +91,23 @@ export default function Todos() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const handlePress = (id) => {
+    router.push(`/todos/${id}`)
+  };
+
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.listItem} >
-        <Text
-          style={[styles.listItemText, item.completed && styles.completed]}
-          onPress={() => toggleTodo(item.id)}
+      <View style={styles.listItem}>
+        <Pressable
+          onLongPress={() => toggleTodo(item.id)}
+          onPress={() => handlePress(item.id)}
         >
-          {item.title}
-        </Text>
+          <Text
+            style={[styles.listItemText, item.completed && styles.completed]}
+          >
+            {item.title}
+          </Text>
+        </Pressable>
         <Pressable onPress={() => removeTodo(item.id)}>
           <AntDesign
             name="delete"
@@ -111,6 +125,7 @@ export default function Todos() {
       <SafeAreaView style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput
+          maxLength={40}
             style={styles.input}
             placeholder="Add a new task..."
             placeholderTextColor="white"
@@ -132,17 +147,23 @@ export default function Todos() {
             itemLayoutAnimation={LinearTransition}
             keyboardDismissMode={"on-drag"}
           />
-          <Pressable
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Pressable
             onPress={() => {
               setColorScheme(colorScheme === "light" ? "dark" : "light");
             }}
             style={styles.themeBtn}
           >
-            <Text>THEME</Text>
+            <Image source={Theme} style={styles.imageTheme}></Image>
           </Pressable>
-          <StatusBar style={'dark'} />
+          {showCue && (<Text style={styles.cue}>Long press to toggle completed</Text>)}
+          <Pressable style={styles.themeBtn} onPress={()=>setShowCue(!showCue)}>
+          <FontAwesome name="question" size={24} color="black" />
+          </Pressable>
+          </View>
+          <StatusBar style={"dark"} />
         </View>
-
+      
       </SafeAreaView>
     </ImageBackground>
   );
@@ -150,6 +171,18 @@ export default function Todos() {
 
 const createStyles = (theme, colorScheme) => {
   return StyleSheet.create({
+    cue: {
+      color: 'gray',
+      marginTop: 57,
+      marginLeft: 63,
+    },
+imageTheme: {
+  width: "100%",
+  height: "100%", 
+  resizeMode: 'cover',
+  borderRadius: 30,  
+  overflow: 'hidden', 
+},
     container: {
       flex: 1,
       padding: 15,
@@ -172,7 +205,8 @@ const createStyles = (theme, colorScheme) => {
       backgroundColor: "rgba(255, 255, 255, 0.7)",
       justifyContent: "center",
       borderRadius: "50%",
-      marginTop: 60,
+      marginTop: 40,
+      alignItems: 'center',
     },
     input: {
       flex: 1,

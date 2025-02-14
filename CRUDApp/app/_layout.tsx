@@ -12,6 +12,7 @@ export default function RootLayout() {
             options={{ title: "Go back", headerShown: false }}
           />
           <Stack.Screen name="todos" options={{ title: "" }} />
+          <Stack.Screen name="todos/[id]" options={{ title: "" }} />
         </Stack>
       </SafeAreaProvider>
     </ThemeProvider>
