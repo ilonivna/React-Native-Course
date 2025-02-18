@@ -8,6 +8,9 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Colors } from '@/constants/Colors';
 
+import "./i18.config.js"
+
+
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
