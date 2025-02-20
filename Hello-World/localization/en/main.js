@@ -6,5 +6,10 @@ export const mainEn =
     navigationToBeans: "Explore the beans",
     navigationToBeverages: "What to drink?",
     navigationToContacts: "Contact us",
-    languageButton: "Language"
+    languageButton: "Language",
+    homeLabel: "Home",
+    benefitsLabel: "Why coffee?",
+    beveragesLabel: "Beverages",
+    beansLabel: "Beans",
+    contactsLabel: "Contacts"
 }

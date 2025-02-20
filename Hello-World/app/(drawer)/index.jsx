@@ -9,7 +9,7 @@ import React from "react";
 import IcedCoffeeImg from "../../assets/images/iced-coffee.png";
 import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
-import LanguageButton from "@/components/Lang";
+import LanguageButton from "@/components/LanguageButton";
 
 const app = () => {
   const { t } = useTranslation();

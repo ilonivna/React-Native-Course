@@ -5,5 +5,10 @@ export const mainUa =
     navigationToBeans: "Поринь у світ зерен",
     navigationToBeverages: "Що випити?",
     navigationToContacts: "Наші контакти",
-    languageButton: "Мова"
+    languageButton: "Мова",
+    homeLabel: "Домашня сторінка",
+    benefitsLabel: "Чому кава?",
+    beveragesLabel: "Напої",
+    beansLabel: "Зерна",
+    contactsLabel: "Контакти"
 }

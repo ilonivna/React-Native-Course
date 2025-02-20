@@ -38,13 +38,14 @@ export default function LanguageButton() {
       </View>
       {pressed && (
         <View style={styles.containerTooltip}>
+          <View style={styles.containerLang}>
           {languages.map((item) => {
             return (
               <Pressable
                 key={item.code}
                 style={[
                   styles.item,
-                  selected === item.code && { backgroundColor: "red" },
+                  selected === item.code && { backgroundColor: "#f53a25" },
                 ]}
                 onPress={() => selectLanguage(item.code)}
               >
@@ -55,6 +56,7 @@ export default function LanguageButton() {
               </Pressable>
             );
           })}
+          </View>
         </View>
       )}
     </>
@@ -79,20 +81,25 @@ const styles = StyleSheet.create({
     },
     containerTooltip: {
       position: "absolute",
-      bottom: 20,
-      left: "20%",
-      transform: [{ translateX: -50 }],
+      flex: 1,
+      height: "100%",
+      width: "100%",
       backgroundColor: "rgba(255, 255, 255, 0.5)",
-      borderRadius: 10,
-      padding: 10,
-      elevation: 5,
+      borderRadius: 10,  
+    },
+    containerLang: {
+      position: "absolute",
+      bottom: 40,
+      right: 20,
+      width: 140,
+      borderRadius: '40',
     },
     item: {
       flexDirection: "row",
       alignItems: "center",
-      
       borderRadius: 5,
       marginVertical: 5,
+      backgroundColor: "rgba(252, 245, 232, 0.7)",
     },
     icon: {
       width: 40,
@@ -102,5 +109,6 @@ const styles = StyleSheet.create({
     },
     text: {
       fontSize: 16,
+      fontWeight: 600,
     },
   });
