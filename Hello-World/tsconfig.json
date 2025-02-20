@@ -17,7 +17,7 @@
     "**/*.jsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "app/(coffee)/indeapp/(coffee)/explore.jsxplore.jsx",
+    "app/__(coffee)/indeapp/(coffee)/explore.jsxplore.jsx",
     "nativewind-env.d.ts"
   ]
 }

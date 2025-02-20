@@ -1,5 +1,5 @@
-import {BeveragesItems} from "../constants/BeveragesItems.js";
-import BeveragesImages from "../constants/BeveragesImages.js";
+import {BeveragesItems} from "../../constants/BeveragesItems.js";
+import BeveragesImages from "../../constants/BeveragesImages.js";
 import React from "react";
 import {
   Text,
@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { Appearance } from "react-native";
 import { Colors } from "@/constants/Colors";
-import BeveragesImg from "../assets/images/beverages.jpg";
+import BeveragesImg from "../../assets/images/beverages.jpg";
 
 export default function Beverages() {
   const colorScheme = Appearance.getColorScheme();

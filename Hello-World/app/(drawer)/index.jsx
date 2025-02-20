@@ -6,7 +6,7 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import IcedCoffeeImg from "../assets/images/iced-coffee.png";
+import IcedCoffeeImg from "../../assets/images/iced-coffee.png";
 import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
 import LanguageButton from "@/components/Lang";

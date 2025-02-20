@@ -3,8 +3,6 @@ import { StyleSheet, SafeAreaView, View, Text, Appearance } from "react-native";
 import { Link } from "expo-router";
 
 import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "react-native";
-import { useEffect } from "react";
 
 
 

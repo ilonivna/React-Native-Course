@@ -10,7 +10,7 @@ import { Colors } from '@/constants/Colors';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 
-import "../app/i18.config";
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -19,25 +19,19 @@ export default function RootLayout() {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === 'dark' ? Colors.dark : Colors.light;
 
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
-    <GluestackUIProvider mode="light">
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-    </Stack>
-    </GluestackUIProvider>
+  
+      <GestureHandlerRootView style={{ flex: 1 }}>
+
+        <Drawer>
+      <Drawer.Screen name="index" options={{ drawerLabel: "Home", title: "Home" }}/>
+      <Drawer.Screen name="explore" options={{ drawerLabel: "Why Coffee?", title: "Benefits" }} />
+      <Drawer.Screen name="beverages" options={{ drawerLabel: "Beverages", title: "Beverages" }} />
+      <Drawer.Screen name="beans" options={{ drawerLabel: "Beans", title: "Beans" }} />
+      <Drawer.Screen name="contact" options={{ drawerLabel: "Contact", title: "Contact" }} />
+    </Drawer>
+      </GestureHandlerRootView>
   );
 }

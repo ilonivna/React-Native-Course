@@ -19,10 +19,10 @@ import {
   AccordionContentText,
   AccordionIcon,
 } from "@/components/ui/accordion";
-import BeansImg from "../assets/images/beans.jpg";
+import BeansImg from "../../assets/images/beans.jpg";
 import { Appearance } from "react-native";
 import { Colors } from "@/constants/Colors";
-import { BeansItems } from "../constants/BeansItems";
+import { BeansItems } from "../../constants/BeansItems";
 import { ChevronUpIcon, ChevronDownIcon } from "@/components/ui/icon";
 
 

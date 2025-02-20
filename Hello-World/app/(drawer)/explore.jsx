@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, StyleSheet, ImageBackground } from 'react-native';
 import React from 'react';
-import ExploreImg from "../assets/images/coffee-splash.png";
+import ExploreImg from "../../assets/images/coffee-splash.png";
 
 const explore = () => {
   return (
