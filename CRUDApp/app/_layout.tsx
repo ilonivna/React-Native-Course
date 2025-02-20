@@ -9,10 +9,11 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen
             name="index"
-            options={{ title: "Go back", headerShown: false }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen name="todos" options={{ title: "" }} />
-          <Stack.Screen name="todos/[id]" options={{ title: "" }} />
+          <Stack.Screen name="todos/[id]" options={{ title: "", headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
       </SafeAreaProvider>
     </ThemeProvider>
