@@ -3,8 +3,8 @@ import { StyleSheet, SafeAreaView, View, Text, Appearance } from "react-native";
 import { Link } from "expo-router";
 
 import { Colors } from "@/constants/Colors";
-// import Map from "@/components/Map_RNMaps";
-import Map from "@/components/Map_RNWebview";
+ import Map from "@/components/Map_RNMaps";
+// import Map from "@/components/Map_RNWebview";
 
 import { ScrollView } from "react-native-gesture-handler";
 

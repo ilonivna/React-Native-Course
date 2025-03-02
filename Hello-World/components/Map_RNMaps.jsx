@@ -1,4 +1,4 @@
-import { Modal } from "react-native-modal";
+import Modal from "react-native-modal";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { View } from "react-native";
 
@@ -6,7 +6,9 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState, useEffect } from "react";
 import { Alert } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import * as Location from "expo-location"; // Import Expo Location
+import * as Location from "expo-location"; //  Expo Location
+import Entypo from '@expo/vector-icons/Entypo';
+
 
 export default function Map() {
     const [location, setLocation] = useState(null);
@@ -23,18 +25,28 @@ export default function Map() {
         setLocation(userLocation.coords);
       })();
     }, []);
+
+    const toggleModal = () => {
+setIsVisible(!isVisible);
+    }
+
+    const [isVisible, setIsVisible] = useState(false);
+
   
     return (
       <>
         <View>
           <Text>Map: </Text>
-          <Pressable>
+          <Pressable onPress={toggleModal}>
             <Feather name="map-pin" size={24} color="black" />
           </Pressable>
         </View>
+
+        <View>
+      <Modal isVisible={isVisible}>
+        <View style={{ flex: 1 }}>
         <View style={styles.container}>
           <MapView
-        
             style={styles.map}
             mapType="hybrid"
             showsUserLocation={true}
@@ -42,7 +54,7 @@ export default function Map() {
             showsMyLocationButton={true}
             showsCompass={true}
             showsScale={true}
-            toolbarEnabled={true} // Enables zoom controls on Android
+            toolbarEnabled={true} // android only
             region={
               location
                 ? {
@@ -60,6 +72,15 @@ export default function Map() {
             }
           />
         </View>
+        <Pressable title="Hide modal" onPress={toggleModal} >
+        <Entypo name="cross" size={24} color="white" />
+        </Pressable>
+        </View>
+      </Modal>
+    </View>
+
+
+
       </>
     );
 }
