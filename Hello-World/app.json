@@ -9,13 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      // Add descriptions to your Info.plist (see iOS setup - step 4)
+      "infoPlist": {
+        "NSCameraUsageDescription": "[REASON]",
+        "NSMicrophoneUsageDescription": "[REASON]"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/favicon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -23,6 +32,16 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "react-native-permissions",
+        {
+          // Add setup_permissions to your Podfile (see iOS setup - steps 1, 2 and 3)
+          "iosPermissions": [
+            "Camera",
+            "Microphone"
+          ]
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",

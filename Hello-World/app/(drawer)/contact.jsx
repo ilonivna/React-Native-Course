@@ -3,7 +3,10 @@ import { StyleSheet, SafeAreaView, View, Text, Appearance } from "react-native";
 import { Link } from "expo-router";
 
 import { Colors } from "@/constants/Colors";
+// import Map from "@/components/Map_RNMaps";
+import Map from "@/components/Map_RNWebview";
 
+import { ScrollView } from "react-native-gesture-handler";
 
 
 export default function Contact() {
@@ -18,29 +21,38 @@ export default function Contact() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.imgContainer}>
-        <Fontisto name="coffeescript"
-          size={250}
-          color={imgColor}/>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>Our Coffee Quarters</Text>
-        <Text style={styles.subTitle}>
-          To find out more, join or suggest - connect with us
-        </Text>
-        <View style={styles.textView}>
-        <Text style={styles.text}>Call: {" "}
-          <Link style={styles.textLink} href="tel:555555555">555-555-555</Link>
-        </Text>
-        <Text style={styles.text}>Mail: {' '}
-          <Link style={styles.textLink} href="mailto:ok@i.ua">ok@i.ua</Link>
-        </Text>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.imgContainer}>
+          {/* ✅ Removed the <Text> wrapper around the icon */}
+          <Fontisto name="coffeescript" size={250} color={imgColor} />
         </View>
-
-      </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Our Coffee Quarters</Text>
+          <Text style={styles.subTitle}>
+            To find out more, join or suggest - connect with us
+          </Text>
+          <View style={styles.textView}>
+            <Text style={styles.text}>
+              Call:{" "}
+              <Link style={styles.textLink} href="tel:555555555">
+                555-555-555
+              </Link>
+            </Text>
+            <Text style={styles.text}>
+              Mail:{" "}
+              <Link style={styles.textLink} href="mailto:ok@i.ua">
+                ok@i.ua
+              </Link>
+            </Text>
+          </View>
+        </View>
+        <Map />
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+
 
 const createStyles = (theme, colorScheme) => {
   return StyleSheet.create({
