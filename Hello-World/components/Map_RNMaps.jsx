@@ -7,94 +7,107 @@ import { useState, useEffect } from "react";
 import { Alert } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location"; //  Expo Location
-import Entypo from '@expo/vector-icons/Entypo';
-
+import Entypo from "@expo/vector-icons/Entypo";
 
 export default function Map() {
-    const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null);
 
-    useEffect(() => {
-      (async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== "granted") {
-          Alert.alert("Permission Denied", "Enable location services in settings.");
-          return;
-        }
-        
-        let userLocation = await Location.getCurrentPositionAsync({});
-        setLocation(userLocation.coords);
-      })();
-    }, []);
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission Denied",
+          "Enable location services in settings."
+        );
+        return;
+      }
 
-    const toggleModal = () => {
-setIsVisible(!isVisible);
-    }
+      let userLocation = await Location.getCurrentPositionAsync({});
+      setLocation(userLocation.coords);
+    })();
+  }, []);
 
-    const [isVisible, setIsVisible] = useState(false);
+  const toggleModal = () => {
+    setIsVisible(!isVisible);
+  };
 
-  
-    return (
-      <>
-        <View>
-          <Text>Map: </Text>
-          <Pressable onPress={toggleModal}>
-            <Feather name="map-pin" size={24} color="black" />
-          </Pressable>
-        </View>
+  const [isVisible, setIsVisible] = useState(false);
 
-        <View>
-      <Modal isVisible={isVisible}>
-        <View style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <MapView
-            style={styles.map}
-            mapType="hybrid"
-            showsUserLocation={true}
-            followsUserLocation={true}
-            showsMyLocationButton={true}
-            showsCompass={true}
-            showsScale={true}
-            toolbarEnabled={true} // android only
-            region={
-              location
-                ? {
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                    latitudeDelta: 0.05,
-                    longitudeDelta: 0.05,
-                  }
-                : {
-                    latitude: 25.274075,
-                    longitude: 51.603083,
-                    latitudeDelta: 0.05,
-                    longitudeDelta: 0.05,
-                  }
-            }
-          />
-        </View>
-        <Pressable title="Hide modal" onPress={toggleModal} >
-        <Entypo name="cross" size={24} color="white" />
+  return (
+    <>
+      <View>
+        <Text>Map: </Text>
+        <Pressable onPress={toggleModal}>
+          <Feather name="map-pin" size={24} color="black" />
         </Pressable>
-        </View>
-      </Modal>
-    </View>
+      </View>
 
+      <View>
+        <Modal isVisible={isVisible}>
+          <View>
+            <View style={styles.container}>
+              <MapView
+                style={styles.map}
+                mapType="hybrid"
+                showsUserLocation={true}
+                followsUserLocation={true}
+                showsMyLocationButton={true}
+                showsCompass={true}
+                showsScale={true}
+                toolbarEnabled={true} // android only
+                region={
+                  location
+                    ? {
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                        latitudeDelta: 0.05,
+                        longitudeDelta: 0.05,
+                      }
+                    : {
+                        latitude: 25.274075,
+                        longitude: 51.603083,
+                        latitudeDelta: 0.05,
+                        longitudeDelta: 0.05,
+                      }
+                }
+              />
+            </View>
+            <Pressable onPress={toggleModal} style={styles.btn}>
 
-
-      </>
-    );
+              <Entypo name="cross" size={24} color="white" />
+            </Pressable>
+          </View>
+        </Modal>
+      </View>
+    </>
+  );
 }
 
-
 const styles = StyleSheet.create({
+  btn: {
+
+    alignItems: "center",
+    justifyContent: "center",
+    width: 30,
+    height: 30,
+    position: "absolute",
+    top: -210,  
+    right: -15,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    borderRadius: 50,
+  },
+  closeText: {
+    color: "white",
+  },
   container: {
-    // ...StyleSheet.absoluteFillObject,
-    height: 400,
-    width: 400,
-    justifyContent: "flex-end",
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: 400,
+    borderRadius: 20,
   },
 });
