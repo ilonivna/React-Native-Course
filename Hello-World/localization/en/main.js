@@ -11,5 +11,6 @@ export const mainEn =
     benefitsLabel: "Why coffee?",
     beveragesLabel: "Beverages",
     beansLabel: "Beans",
-    contactsLabel: "Contacts"
+    contactsLabel: "Contacts",
+    webpageLabel: "Find out more"
 }

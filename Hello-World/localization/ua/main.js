@@ -10,5 +10,6 @@ export const mainUa =
     benefitsLabel: "Чому кава?",
     beveragesLabel: "Напої",
     beansLabel: "Зерна",
-    contactsLabel: "Контакти"
+    contactsLabel: "Контакти",
+    webpageLabel: "Дізнатись більше"
 }

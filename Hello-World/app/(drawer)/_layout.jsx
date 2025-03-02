@@ -34,6 +34,8 @@ return (
       <Drawer.Screen name="beverages" options={{ drawerLabel: t("beveragesLabel"), title: "" }} />
       <Drawer.Screen name="beans" options={{ drawerLabel: t("beansLabel"), title: "" }} />
       <Drawer.Screen name="contact" options={{ drawerLabel: t("contactsLabel"), title: "" }} />
+      <Drawer.Screen name="webpage" options={{ drawerLabel: t("webpageLabel"), title: "" }} />
+
     </Drawer>
       </GestureHandlerRootView>
   );

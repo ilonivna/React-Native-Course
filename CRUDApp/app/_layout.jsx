@@ -3,6 +3,7 @@ import ThemeProvider from "./context/ThemeContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
+
 export default function RootLayout() {
   return (
     <ThemeProvider>
