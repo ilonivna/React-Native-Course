@@ -37,14 +37,20 @@ export default function Map() {
   return (
     <>
       <View>
-        <Text>Map: </Text>
-        <Pressable onPress={toggleModal}>
+        <Pressable onPress={toggleModal} style={{ display: "flex", flexDirection: 'row' }} hitSlop={20}>
+          <Text style={styles.text}>Press to open map: </Text>
           <Feather name="map-pin" size={24} color="black" />
         </Pressable>
       </View>
 
       <View>
-        <Modal isVisible={isVisible}>
+        <Modal
+          isVisible={isVisible}
+          animationInTiming={600}
+          animationOutTiming={900}
+          backdropOpacity={0.65}
+          onBackdropPress={toggleModal}
+        >
           <View>
             <View style={styles.container}>
               <MapView
@@ -74,7 +80,6 @@ export default function Map() {
               />
             </View>
             <Pressable onPress={toggleModal} style={styles.btn}>
-
               <Entypo name="cross" size={24} color="white" />
             </Pressable>
           </View>
@@ -85,14 +90,17 @@ export default function Map() {
 }
 
 const styles = StyleSheet.create({
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
   btn: {
-
     alignItems: "center",
     justifyContent: "center",
     width: 30,
     height: 30,
     position: "absolute",
-    top: -210,  
+    top: -210,
     right: -15,
     backgroundColor: "rgba(0,0,0,0.4)",
     borderRadius: 50,

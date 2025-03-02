@@ -44,9 +44,10 @@ export default function Contact() {
                 ok@i.ua
               </Link>
             </Text>
-          </View>
+          </View> 
+          <Map />
         </View>
-        <Map />
+       
       </ScrollView>
     </SafeAreaView>
   );
@@ -81,7 +82,7 @@ const createStyles = (theme, colorScheme) => {
         fontSize: 20,
       },
       textView: {
-        marginBottom: 10,
+        marginBottom: 40,
         marginTop: 20,
       },
       text: {
