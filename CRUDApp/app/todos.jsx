@@ -21,7 +21,8 @@ import { ThemeContext } from "./context/ThemeContext";
 import Animated, { LinearTransition } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import Theme from "../assets/images/background/day-night-icon.jpg"
+import Theme from "../assets/images/background/day-night-icon.jpg";
+
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);
@@ -96,6 +97,7 @@ export default function Todos() {
   };
 
   const renderItem = ({ item }) => {
+
     return (
       <View style={styles.listItem}>
         <Pressable
@@ -119,7 +121,9 @@ export default function Todos() {
       </View>
     );
   };
-  return (
+  
+  return ( 
+    
     <ImageBackground source={BG} resizeMode="cover" style={{ flex: 1 }}>
       {colorScheme === "light" && <View style={styles.overlay} />}
       <SafeAreaView style={styles.container}>
